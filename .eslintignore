@@ -1,0 +1,8 @@
+.eslintrc.js
+
+# svgo 
+*.config.js
+
+node_modules
+
+webpack.*.js

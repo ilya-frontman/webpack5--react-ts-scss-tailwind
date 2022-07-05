@@ -1,0 +1,27 @@
+@import './modules/fonts';
+
+body {
+  color: red;
+  background: black;
+  background-image: url('Img/bigimg.jpg');
+  background-size: cover;
+  font-family: Manrope;
+  font-weight: 400;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: max-content;
+  grid-template-rows: max-content;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
