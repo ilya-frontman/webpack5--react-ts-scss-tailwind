@@ -2,23 +2,24 @@
 
 body {
   color: red;
+  font-weight: 400;
+  font-family: Manrope, sans-serif;
+
   background: black;
   background-image: url('Img/bigimg.jpg');
   background-size: cover;
-  font-family: Manrope;
-  font-weight: 400;
 }
 
 .flex {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: max-content;
   grid-template-rows: max-content;
+  grid-template-columns: max-content;
 }
 
 .icon {
