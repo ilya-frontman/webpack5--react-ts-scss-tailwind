@@ -11,9 +11,10 @@
     "build": "webpack --mode production --config webpack.prod.js",
     "clean": "rm -rf build",
     "prepare": "husky install",
-    "stylelint": "stylelint \"src/scss/**/*.scss\"",
+    "style": "stylelint \"src/scss/**/*.scss\"",
+    "style:fix": "stylelint --fix \"src/scss/**/*.scss\"",
     "eslint": "eslint \"src/**/*.js\"",
-    "prettier:format": ""
+    "prettier:format": "prettier --write \"src/**/*.(js|scss|css|html)\""
   },
   "husky": {
     "hooks": {
