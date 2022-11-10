@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "stylelint-config-recess-order",
+    "stylelint-config-standard-scss",
+    "stylelint-prettier/recommended"
+  ],
+  "plugins": ["stylelint-order", "stylelint-scss"],
+  "rules": {
+    "number-leading-zero": null,
+    "selector-class-pattern": null,
+    "selector-id-pattern": null,
+    "no-descending-specificity": null,
+    "string-quotes": "single",
+    "custom-property-pattern": null,
+    "comment-whitespace-inside": "always"
+  }
+}
