@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const App: React.FC = () => {
   const message = 'Hello React on webpack rails';
