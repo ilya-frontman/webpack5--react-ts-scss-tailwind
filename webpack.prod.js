@@ -12,7 +12,7 @@ const webpackConfig = merge([
   {
     output: {
       compareBeforeEmit: false,
-      filename: 'js/[name].[hash:16].js',
+      filename: 'js/[name].[hash:8].js',
     },
 
     optimization: {
@@ -25,27 +25,11 @@ const webpackConfig = merge([
               // Feel free to experiment with options for better result for you
               plugins: [
                 ['imagemin-gifsicle', { interlaced: true }],
-                ['imagemin-jpegtran', { quality: 75, progressive: true }],
-                ['imagemin-mozjpeg', { quality: 75, progressive: true }],
+                ['imagemin-jpegtran', { quality: 64, progressive: true }],
+                ['imagemin-mozjpeg', { quality: 64, progressive: true }],
                 ['imagemin-optipng', { optimizationLevel: 5 }],
                 // Svgo configuration here https://github.com/svg/svgo#configuration
-                [
-                  'svgo',
-                  {
-                    plugins: extendDefaultPlugins([
-                      {
-                        name: 'removeViewBox',
-                        active: false,
-                      },
-                      {
-                        name: 'addAttributesToSVGElement',
-                        params: {
-                          attributes: [{ xmlns: 'http://www.w3.org/2000/svg' }],
-                        },
-                      },
-                    ]),
-                  },
-                ],
+                ['svgo'],
               ],
             },
           },
@@ -55,7 +39,7 @@ const webpackConfig = merge([
 
     plugins: [
       new MiniCssExtractPlugin({
-        filename: 'style/[name].[hash:16].css',
+        filename: 'style/[name].[hash:8].css',
       }),
     ],
 
@@ -65,41 +49,26 @@ const webpackConfig = merge([
           test: /\.(woff|woff2|eot|ttf|otf)$/i,
           type: 'asset/resource',
           generator: {
-            filename: 'fonts/[name].[hash:16][ext]',
+            filename: 'fonts/[name].[hash:8][ext]',
           },
         },
         {
           test: /\.svg$/i,
           type: 'asset/resource',
           generator: {
-            filename: 'svg/[name].[hash:16][ext]',
+            filename: 'svg/[name].[hash:8][ext]',
           },
         },
         {
           test: /\.(png|jpg|jpeg|gif|webp|avif)$/i,
           type: 'asset/resource',
           generator: {
-            filename: 'img/[name].[hash:16][ext]',
+            filename: 'img/[name].[hash:8][ext]',
           },
         },
         {
           test: /\.s[ac]ss$/i,
-          use: [
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                sourceMap: true,
-              },
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                implementation: require('sass'),
-              },
-            },
-          ],
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         },
       ],
     },

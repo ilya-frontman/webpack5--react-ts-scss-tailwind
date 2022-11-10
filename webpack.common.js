@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // common build
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
 
   output: {
     filename: '[name].bundle.js',
@@ -29,7 +29,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.scss', '.css', '.sass'],
+    extensions: ['.js', '.scss', '.css', '.sass', '.ts', '.jsx', '.tsx'],
     alias: {
       Scss: path.resolve(__dirname, './src/scss/'),
       Fonts: path.resolve(__dirname, './public/fonts'),
@@ -48,7 +48,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/i,
+        test: /\.(js|jsx|ts|tsx)$/i,
         exclude: /node_modules/,
         use: 'babel-loader',
       },
