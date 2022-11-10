@@ -1,5 +1,4 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+#!/bin/bash
 
 echo -e "===\n>> Pre-commit Hook: Checking branch name..."
 
@@ -8,9 +7,11 @@ PROTECTED_BRANCHES="^(master|develop|main)"
 
 if [[ "$BRANCH" =~ $PROTECTED_BRANCHES ]]
 then
-  echo -e "\n🚫 Cannot commit on $BRANCH branch, please create your own branch and use Pull Request." && exit 1
+  echo -e "\n🚫 Cannot commit to $BRANCH branch, please create your own branch and use PR." && exit 1
 fi
 
-echo -e ">> Finish checking branch name\n==="
+echo -e ">> Finish checking branch name.\n==="
 
-npx lint-staged
+echo -e "===>> Pre-commit Hook: Run linters and formatters"
+yarn run lint-staged
+echo -e "===>> Pre-commit Hook: Finish linters and formatters"
