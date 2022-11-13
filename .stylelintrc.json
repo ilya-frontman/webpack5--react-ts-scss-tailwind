@@ -6,6 +6,30 @@
   ],
   "plugins": ["stylelint-order", "stylelint-scss"],
   "rules": {
+    "scss/at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "tailwind",
+          "apply",
+          "variants",
+          "responsive",
+          "screen"
+        ]
+      }
+    ],
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "tailwind",
+          "apply",
+          "variants",
+          "responsive",
+          "screen"
+        ]
+      }
+    ],
     "number-leading-zero": null,
     "selector-class-pattern": null,
     "selector-id-pattern": null,
