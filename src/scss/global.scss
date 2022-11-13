@@ -1,10 +1,13 @@
 @import './modules/fonts';
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
+  @apply text-3xl font-medium text-gray-50;
+
   font-family: Manrope, sans-serif;
-  font-weight: 400;
-  color: red;
-  background: black;
   background-image: url('Img/bigimg.jpg');
   background-size: cover;
 }
