@@ -3,6 +3,7 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const SvgSpriteHtmlWebpackPlugin = require('svg-sprite-html-webpack');
 
 // merge confgig
 const webpackConfig = merge([
@@ -33,17 +34,18 @@ const webpackConfig = merge([
           },
         },
         {
-          test: /\.svg$/i,
-          type: 'asset/resource',
-          generator: {
-            filename: 'svg/[name][ext]',
-          },
-        },
-        {
           test: /\.(png|jpg|jpeg|gif|webp|avif)$/i,
           type: 'asset/resource',
           generator: {
             filename: 'img/[name][ext]',
+          },
+        },
+        {
+          test: /\.svg$/,
+          exclude: /node_modules/,
+          use: [SvgSpriteHtmlWebpackPlugin.getLoader()],
+          generator: {
+            filename: 'svg/sprite.svg',
           },
         },
         {

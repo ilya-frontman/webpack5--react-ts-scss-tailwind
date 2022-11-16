@@ -2,9 +2,8 @@
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
 const ImageMinimizerWebpackPlugin = require('image-minimizer-webpack-plugin');
-const { extendDefaultPlugins } = require('svgo');
+const SvgSpriteHtmlWebpackPlugin = require('svg-sprite-html-webpack');
 
 // merge confgig
 const webpackConfig = merge([
@@ -12,7 +11,7 @@ const webpackConfig = merge([
   {
     output: {
       compareBeforeEmit: false,
-      filename: 'js/[name].[hash:8].js',
+      filename: 'js/[name].[fullhash].js',
     },
 
     optimization: {
@@ -28,8 +27,6 @@ const webpackConfig = merge([
                 ['imagemin-jpegtran', { quality: 64, progressive: true }],
                 ['imagemin-mozjpeg', { quality: 64, progressive: true }],
                 ['imagemin-optipng', { optimizationLevel: 5 }],
-                // Svgo configuration here https://github.com/svg/svgo#configuration
-                ['svgo'],
               ],
             },
           },
@@ -39,7 +36,7 @@ const webpackConfig = merge([
 
     plugins: [
       new MiniCssExtractPlugin({
-        filename: 'style/[name].[hash:8].css',
+        filename: 'style/[name].[fullhash].css',
       }),
     ],
 
@@ -49,21 +46,22 @@ const webpackConfig = merge([
           test: /\.(woff|woff2|eot|ttf|otf)$/i,
           type: 'asset/resource',
           generator: {
-            filename: 'fonts/[name].[hash:8][ext]',
-          },
-        },
-        {
-          test: /\.svg$/i,
-          type: 'asset/resource',
-          generator: {
-            filename: 'svg/[name].[hash:8][ext]',
+            filename: 'fonts/[name].[fullhash][ext]',
           },
         },
         {
           test: /\.(png|jpg|jpeg|gif|webp|avif)$/i,
           type: 'asset/resource',
           generator: {
-            filename: 'img/[name].[hash:8][ext]',
+            filename: 'img/[name].[fullhash][ext]',
+          },
+        },
+        {
+          test: /\.svg$/,
+          exclude: /node_modules/,
+          use: [SvgSpriteHtmlWebpackPlugin.getLoader()],
+          generator: {
+            filename: 'svg/sprite.[contenthash].svg',
           },
         },
         {
