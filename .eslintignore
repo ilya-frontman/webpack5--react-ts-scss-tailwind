@@ -1,6 +1,5 @@
 .eslintrc.js
 
-# svgo 
 *.config.js
 
 node_modules
@@ -9,3 +8,9 @@ webpack.*.js
 
 *.css
 *.svg
+
+# ignore build
+build/
+dist/
+
+src/custom.d.ts

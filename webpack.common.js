@@ -1,6 +1,6 @@
 const path = require('path');
-const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const SvgSpriteHtmlWebpackPlugin = require('svg-sprite-html-webpack');
 
 // common build
 module.exports = {
@@ -31,10 +31,10 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.scss', '.css', '.sass', '.ts', '.jsx', '.tsx'],
     alias: {
-      Scss: path.resolve(__dirname, './src/scss/'),
-      Fonts: path.resolve(__dirname, './public/fonts'),
-      Img: path.resolve(__dirname, './public/img'),
-      Svg: path.resolve(__dirname, './public/svg'),
+      Scss: path.resolve(__dirname, 'src/scss/'),
+      Fonts: path.resolve(__dirname, 'public/fonts'),
+      Img: path.resolve(__dirname, 'public/img'),
+      Svg: path.resolve(__dirname, 'public/svg'),
     },
   },
 
@@ -42,6 +42,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/html/index.html',
       title: 'React App',
+    }),
+    new SvgSpriteHtmlWebpackPlugin({
+      includeFiles: ['public/svg/*.svg'],
     }),
   ],
 

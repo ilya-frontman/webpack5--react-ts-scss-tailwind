@@ -3,6 +3,7 @@ node_modules/
 
 # ignore build
 build/
+dist/
 
 # ignore source files
 src/css/*.min.css
