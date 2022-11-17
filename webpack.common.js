@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const SvgSpriteHtmlWebpackPlugin = require('svg-sprite-html-webpack');
 
 // common build
 module.exports = {
@@ -42,9 +41,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/html/index.html',
       title: 'React App',
-    }),
-    new SvgSpriteHtmlWebpackPlugin({
-      includeFiles: ['public/svg/*.svg'],
     }),
   ],
 
