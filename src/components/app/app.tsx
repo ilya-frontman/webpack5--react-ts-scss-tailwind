@@ -7,8 +7,6 @@ import Icon from '../icon/icon';
 const App = () => {
   const message = 'Hello React on webpack rails';
 
-  // console.log('test');
-
   return (
     <>
       <h1>{message}</h1>
