@@ -1,5 +1,5 @@
 {
-  "src/**/*.(js|jsx|scss|html|ts|tsx)": "yarn run format",
-  "src/**/*.(js|jsx|ts|tsx)": "yarn run eslint && yarn run eslint:fix",
-  "src/**/*.scss": "yarn run stylelint && yarn run stylelint:fix"
+  "*.(js|jsx|scss|html|ts|tsx)": "yarn run format",
+  "*.(ts|tsx)": "yarn run eslint",
+  "*.scss": "yarn run stylelint"
 }
