@@ -3,7 +3,7 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageMinimizerWebpackPlugin = require('image-minimizer-webpack-plugin');
-const SvgSpriteHtmlWebpackPlugin = require('svg-sprite-html-webpack');
+const SVGSpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 // merge confgig
 const webpackConfig = merge([
@@ -38,6 +38,7 @@ const webpackConfig = merge([
       new MiniCssExtractPlugin({
         filename: 'style/[name].[fullhash].css',
       }),
+      new SVGSpriteLoaderPlugin({ plainSprite: true }),
     ],
 
     module: {
@@ -58,11 +59,18 @@ const webpackConfig = merge([
         },
         {
           test: /\.svg$/,
-          exclude: /node_modules/,
-          use: [SvgSpriteHtmlWebpackPlugin.getLoader()],
-          generator: {
-            filename: 'svg/sprite.[contenthash].svg',
-          },
+          use: [
+            {
+              loader: 'svg-sprite-loader',
+              options: {
+                extract: true,
+                outputPath: 'svg/',
+                publicPath: 'svg/',
+                spriteFilename: (svgPath) =>
+                  `sprite.[contenthash]${svgPath.substr(-4)}`,
+              },
+            },
+          ],
         },
         {
           test: /\.s[ac]ss$/i,
