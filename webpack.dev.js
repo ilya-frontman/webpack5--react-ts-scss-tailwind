@@ -10,7 +10,7 @@ const webpackConfig = merge([
   common,
   {
     devServer: {
-      static: path.resolve(__dirname, './dist'),
+      static: path.resolve(__dirname, './build'),
       compress: true,
       hot: true,
       port: 3000,
